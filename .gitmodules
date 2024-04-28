@@ -1,3 +1,6 @@
 [submodule "core/pyrite"]
 	path = core/pyrite
 	url = https://github.com/mo-crystal/pyrite-cpp.git
+[submodule "core/mocutils"]
+	path = core/mocutils
+	url = https://github.com/mo-crystal/mocutils.git
