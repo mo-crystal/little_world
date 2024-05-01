@@ -2,3 +2,10 @@
 *.elf
 .vscode
 .idea
+
+build
+.xmake
+core/mocutils/*.h
+core/mocutils/*.cc
+core/pyrite/*.h
+core/pyrite/*.cc
