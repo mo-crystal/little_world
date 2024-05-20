@@ -8,16 +8,10 @@ else
 	suffix = exe
 endif
 
-dep:
-	git submodule update --init
-	git submodule update --remote
-	make -C ../core/mocutils install
-	make -C ../core/pyrite install
-
 build: *.cc
 	g++ -o server.$(suffix) *.cc \
-		../core/*.cc \
-		-I../core \
+		-IC:\include \
+		-LC:\lib \
 		-lpyrite -lmocutils
 
 run: build
