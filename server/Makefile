@@ -10,6 +10,8 @@ endif
 
 build: *.cc
 	g++ -o server.$(suffix) *.cc \
+		-I../core \
+		../core/*.cc \
 		-IC:\include \
 		-LC:\lib \
 		-lpyrite -lmocutils
