@@ -2,10 +2,10 @@
 #include <vector>
 #include <mocutils/log.h>
 
-extern std::vector<user> user_manager;
+extern std::vector<user> users;
 
 void init_user() {
   moc::log("init user.");
-  user_manager.push_back({0, "Test1"});
-  user_manager.push_back({1, "Test2"});
+  users.push_back({0, "Test1"});
+  users.push_back({1, "Test2"});
 }
