@@ -1,6 +1,6 @@
-#include <log.h>
+#include <mocutils/log.h>
 
 int main() {
-  log("server started.");
+  moc::log("server started.");
   return 0;
 }
