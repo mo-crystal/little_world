@@ -14,7 +14,7 @@ build: *.cc
 		../core/*.cc \
 		-IC:\include \
 		-LC:\lib \
-		-lpyrite -lmocutils
+		-lpyrite -lmocutils -DWindows -lws2_32
 
 run: build
 	./server.$(suffix)

@@ -3,10 +3,11 @@
 #include <user.h>
 
 extern std::vector<user> users;
+extern void init_user();
+extern void init_pyrite();
 
 int main() {
-  extern void init_user();
   init_user();
-  printf("%d\n", users.size());
+  init_pyrite();
   return 0;
 }
