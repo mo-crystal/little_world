@@ -14,8 +14,6 @@
 #include <QMovie>
 #include <QDebug>
 
-#include <QMediaPlaylist>
-#include <QMediaPlayer>
 #include <QMouseEvent>
 #include <QTimer>
 

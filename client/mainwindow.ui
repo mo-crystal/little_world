@@ -57,8 +57,8 @@
       <rect>
        <x>-1</x>
        <y>-1</y>
-       <width>481</width>
-       <height>331</height>
+       <width>482</width>
+       <height>332</height>
       </rect>
      </property>
      <layout class="QVBoxLayout" name="verticalLayout">
@@ -81,8 +81,20 @@
         </property>
         <item>
          <widget class="QLabel" name="label">
+          <property name="minimumSize">
+           <size>
+            <width>60</width>
+            <height>65</height>
+           </size>
+          </property>
+          <property name="maximumSize">
+           <size>
+            <width>60</width>
+            <height>65</height>
+           </size>
+          </property>
           <property name="styleSheet">
-           <string notr="true">font: 700 9pt &quot;Microsoft YaHei UI&quot;;</string>
+           <string notr="true">font: 700 6pt &quot;Microsoft YaHei UI&quot;;</string>
           </property>
           <property name="text">
            <string>ID:</string>
@@ -96,13 +108,13 @@
          <widget class="QLineEdit" name="lineEdit_2">
           <property name="minimumSize">
            <size>
-            <width>320</width>
+            <width>300</width>
             <height>30</height>
            </size>
           </property>
           <property name="maximumSize">
            <size>
-            <width>320</width>
+            <width>300</width>
             <height>30</height>
            </size>
           </property>
@@ -122,8 +134,20 @@
         </property>
         <item>
          <widget class="QLabel" name="label_2">
+          <property name="minimumSize">
+           <size>
+            <width>60</width>
+            <height>65</height>
+           </size>
+          </property>
+          <property name="maximumSize">
+           <size>
+            <width>60</width>
+            <height>65</height>
+           </size>
+          </property>
           <property name="styleSheet">
-           <string notr="true">font: 700 9pt &quot;Microsoft YaHei UI&quot;;</string>
+           <string notr="true">font: 700 6pt &quot;Microsoft YaHei UI&quot;;</string>
           </property>
           <property name="text">
            <string>Password:</string>
@@ -137,13 +161,13 @@
          <widget class="QLineEdit" name="lineEdit">
           <property name="minimumSize">
            <size>
-            <width>0</width>
+            <width>300</width>
             <height>30</height>
            </size>
           </property>
           <property name="maximumSize">
            <size>
-            <width>16777215</width>
+            <width>300</width>
             <height>30</height>
            </size>
           </property>
