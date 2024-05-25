@@ -8,6 +8,8 @@ CONFIG += c++17
 # In order to do so, uncomment the following line.
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
+DEFINES += Windows
+
 SOURCES += \
     main.cpp \
     mainwindow.cpp
@@ -22,3 +24,25 @@ FORMS += \
 qnx: target.path = /tmp/$${TARGET}/bin
 else: unix:!android: target.path = /opt/$${TARGET}/bin
 !isEmpty(target.path): INSTALLS += target
+
+win32:CONFIG(release, debug|release): LIBS += -LC:/lib/ -lmocutils
+else:win32:CONFIG(debug, debug|release): LIBS += -LC:/lib/ -lmocutils
+
+INCLUDEPATH += C:/include
+DEPENDPATH += C:/include
+
+win32-g++:CONFIG(release, debug|release): PRE_TARGETDEPS += C:/lib/libmocutils.a
+else:win32-g++:CONFIG(debug, debug|release): PRE_TARGETDEPS += C:/lib/libmocutils.a
+else:win32:!win32-g++:CONFIG(release, debug|release): PRE_TARGETDEPS += C:/lib/mocutils.lib
+else:win32:!win32-g++:CONFIG(debug, debug|release): PRE_TARGETDEPS += C:/lib/mocutils.lib
+
+win32:CONFIG(release, debug|release): LIBS += -LC:/lib/ -lpyrite
+else:win32:CONFIG(debug, debug|release): LIBS += -LC:/lib/ -lpyrite
+
+INCLUDEPATH += C:/include
+DEPENDPATH += C:/include
+
+win32-g++:CONFIG(release, debug|release): PRE_TARGETDEPS += C:/lib/libpyrite.a
+else:win32-g++:CONFIG(debug, debug|release): PRE_TARGETDEPS += C:/lib/libpyrite.a
+else:win32:!win32-g++:CONFIG(release, debug|release): PRE_TARGETDEPS += C:/lib/pyrite.lib
+else:win32:!win32-g++:CONFIG(debug, debug|release): PRE_TARGETDEPS += C:/lib/pyrite.lib
