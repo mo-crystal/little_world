@@ -5,6 +5,9 @@
 #include <QPainter>
 #include <QMovie>
 #include <QDebug>
+#
+#include <pyrite/client.h>
+
 
 #include <QMouseEvent>
 #include <QTimer>
