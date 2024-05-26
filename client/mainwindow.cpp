@@ -6,7 +6,8 @@ MainWindow::MainWindow(QWidget *parent)
 {
   ui->setupUi(this);
   ui->stackedWidget->setStyleSheet("background-color: transparent;");
-
+  prt::client c("127.0.0.1", 8080);
+  c.async();
  
 }
 
