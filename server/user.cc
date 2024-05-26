@@ -10,8 +10,8 @@ std::vector<user> users;
 std::map<sockaddr_in, int> addr_to_uid;
 
 void init_user() {
-  users.push_back({0, "Test1"});
-  users.push_back({1, "Test2"});
+  users.push_back({0, "Test0", "password0"});
+  users.push_back({1, "Test1", "password1"});
   char buf[128];
   sprintf(buf, "User inited. Total: %d", users.size());
   moc::log(std::string(buf));
@@ -20,7 +20,7 @@ void init_user() {
 prt::bytes login(sockaddr_in client_addr, prt::bytes data) {
   user req;
   data.to_mem(&req, sizeof(user));
-  bool uid = -1;
+  int uid = -1;
   for (const auto &u: users) {
     if (u.id != req.id || u.password != req.password)
       continue;
