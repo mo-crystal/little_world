@@ -1,4 +1,4 @@
-#include<building.h>
+#include"building.h"
 
 Building::~Building()
 {
