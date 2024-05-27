@@ -1,4 +1,4 @@
-#include <pyrite/server.h>
+#include "spyrite.h"
 #include <mocutils/log.h>
 
 prt::server *server;

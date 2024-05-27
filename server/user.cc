@@ -1,13 +1,6 @@
-#include <user.h>
-#include <vector>
-#include <pyrite/server.h>
-#include <mocutils/log.h>
-#include <map>
-
-
+#include "suser.h"
 
 std::vector<user> users;
-std::map<sockaddr_in, int> addr_to_uid;
 
 void init_user() {
   users.push_back({0, "Test0", "password0"});
@@ -29,7 +22,5 @@ prt::bytes login(sockaddr_in client_addr, prt::bytes data) {
   }
   if (uid == -1)
     return prt::bytes("wrong id or password");
-
-  addr_to_uid[client_addr] = uid;
   return prt::bytes("ok");
 }
