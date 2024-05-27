@@ -4,11 +4,13 @@ Engine::Engine(int side, std::string _mode)
 {
   mode = _mode;
   actorcontroller = new ActorController;
+  rendercontroller = new RenderController;
 }
 
 Engine::~Engine()
 {
   delete actorcontroller;
+  delete rendercontroller;
 }
 
 void Engine::Init()
@@ -21,13 +23,19 @@ void Engine::Init()
 
 void Engine::Start()
 {
+  std::thread render_thread([this]()
+                            {
+            while (1)
+            {
+                std::this_thread::sleep_for(std::chrono::duration<double>(TickTime));
+                rendercontroller->Draw();
+            } });
+  render_thread.detach();
   while (true)
   {
-    std::vector<render_data> datas;
-    for (int i = 0; i < tmpPlayers.size(); i++)
-    {
-      datas.push_back(tmpPlayers[i]->GetRenderData());
-      tmpPlayers[i]->TickAction();
-    }
+    std::vector<render_data> datas = actorcontroller->GetRenderData();
+    rendercontroller->SetFrameData(datas);
+    std::this_thread::sleep_for(std::chrono::duration<double>(TickTime));
+    actorcontroller->TickAtion();
   }
 }
