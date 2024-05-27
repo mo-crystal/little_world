@@ -3,10 +3,12 @@
 Engine::Engine(int side, std::string _mode)
 {
   mode = _mode;
+  actorcontroller = new ActorController;
 }
 
 Engine::~Engine()
 {
+  delete actorcontroller;
 }
 
 void Engine::Init()
@@ -14,7 +16,7 @@ void Engine::Init()
   Point a(480, 320);
   Player *p = new Player(a);
   p->InitStates("D:\\CODE\\C++\\civilization\\src\\client\\res\\game\\c1");
-  tmpPlayers.push_back(p);
+  actorcontroller->RegisterActor(p);
 }
 
 void Engine::Start()
