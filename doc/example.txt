@@ -1,0 +1,10 @@
+example:
+  S -> C promise example1
+    "string1"
+    "string2"
+    -> "ok"
+    -> "failed because of ..."
+    -> // 返回值结构比较复杂时可以写成多行
+      "multiple args of resp"
+      233
+      map
