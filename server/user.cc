@@ -5,9 +5,7 @@ std::vector<user> users;
 void init_user() {
   users.push_back({0, "Test0", "password0"});
   users.push_back({1, "Test1", "password1"});
-  char buf[128];
-  sprintf(buf, "User inited. Total: %d", users.size());
-  moc::log(std::string(buf));
+  moc::logf("User inited. Total: %d", users.size());
 }
 
 prt::bytes login(sockaddr_in client_addr, prt::bytes data) {
