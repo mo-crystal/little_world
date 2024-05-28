@@ -1,12 +1,12 @@
-#include <pyrite/server.h>
+#include "spyrite.h"
+#include "suser.h"
 #include <mocutils/log.h>
 
 prt::server *server;
 
-extern prt::bytes login(sockaddr_in, prt::bytes);
-
 void init_pyrite() {
   server = new prt::server(8081);
   server->set_handler("login", login);
+  server->set_handler("whoami", whoami);
   server->async();
 }
