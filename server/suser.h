@@ -11,5 +11,6 @@ extern std::vector<user> users;
 
 void init_user();
 prt::bytes login(sockaddr_in client_addr, prt::bytes data);
+prt::bytes whoami(sockaddr_in client_addr, prt::bytes data);
 
 #endif

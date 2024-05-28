@@ -3,3 +3,9 @@
     core/user.h::user           // 传来整个 user 对象，但是只校验 id 和密码
     -> "wrong id or password"   // 密码错误
     -> "ok"                     // 成功登录
+
+whoami: 获取本地址对应的用户数据
+  C -> S promise whoami
+    null
+    // 传回一个 user 对象，若此地址尚未登录或绑定用户，则 user.id 为 -1
+    -> core/user.h::user
