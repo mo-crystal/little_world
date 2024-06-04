@@ -1,11 +1,11 @@
-os = $(shell uname)
-ifeq (os, Linux)
-	rm     = rm
-	suffix = elf
-else
-	os     = Windows
+ifeq ($(OS), Windows_NT)
+	OS     = Windows
 	rm     = del
 	suffix = exe
+	ws2_32 = -lws2_32
+else
+	rm     = rm
+	suffix = elf
 endif
 
 build: *.cc
@@ -14,7 +14,7 @@ build: *.cc
 		../core/user.cc \
 		-IC:\include \
 		-LC:\lib \
-		-lpyrite -lmocutils -DWindows -lws2_32
+		-lpyrite -lmocutils -D$(OS) $(ws2_32)
 
 run: build
 	./server.$(suffix)
