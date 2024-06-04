@@ -24,10 +24,13 @@ public:
   void SetDefaultState(const std::string &s_name);
   bool StateChange(const std::string &s_name);
   void InitStates(const std::string &path);
-
+  std::string GetNowState() { return now_state; }
+  
+  
+  
   void TickAction() override;
   render_data GetRenderData();
-
+ 
   virtual ~RenderableActor();
 };
 
