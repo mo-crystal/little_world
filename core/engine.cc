@@ -9,6 +9,7 @@ Engine::Engine(int _side, std::string _mode)
   inputcontroller = new InputController(this);
   controllers["actorcontroller"] = actorcontroller;
   controllers["rendercontroller"] = rendercontroller;
+  controllers["inputcontroller"] = inputcontroller;
 }
 
 Engine::~Engine()
@@ -31,6 +32,7 @@ void Engine::Start()
 {
   rendercontroller->Start(TickTime);
   actorcontroller->Start(ACTORCONTROLLER_TICKTIME);
+  inputcontroller->Start(INPUTCONTROLLER_TICKTIME);
   for (auto i = controllers.begin(); i != controllers.end(); i++)
   {
     (*i).second->Start(TickTime);

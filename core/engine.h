@@ -4,11 +4,13 @@
 #include "./impl_actors/player.h"
 #include "./controllers/actor_controller.h"
 #include "./controllers/render_controller.h"
+#include "./controllers/input_controller.h"
 
 #define SERVER 1
 #define CLIENT 2
 
 #define ACTORCONTROLLER_TICKTIME 1000
+#define INPUTCONTROLLER_TICKTIME 10
 
 class Engine
 {
@@ -16,6 +18,7 @@ private:
   std::unordered_map<std::string,Controller *> controllers;
   RenderController *rendercontroller;
   ActorController *actorcontroller;
+  InputController *inputcontroller;
   std::string mode = "release";
   double TickTime = 0.0167;
   int side;
