@@ -1,16 +1,22 @@
 #include "engine.h"
 
-Engine::Engine(int side, std::string _mode)
+Engine::Engine(int _side, std::string _mode)
 {
+  side = _side;
   mode = _mode;
-  actorcontroller = new ActorController;
-  rendercontroller = new RenderController;
+  actorcontroller = new ActorController(this);
+  rendercontroller = new RenderController(this);
+  inputcontroller = new InputController(this);
+  controllers["actorcontroller"] = actorcontroller;
+  controllers["rendercontroller"] = rendercontroller;
 }
 
 Engine::~Engine()
 {
-  delete actorcontroller;
-  delete rendercontroller;
+  for (auto i = controllers.begin(); i != controllers.end(); i++)
+  {
+    delete (*i).second;
+  }
 }
 
 void Engine::Init()
@@ -18,24 +24,32 @@ void Engine::Init()
   Point a(480, 320);
   Player *p = new Player(a);
   p->InitStates("D:\\CODE\\C++\\civilization\\src\\client\\res\\game\\c1");
-  actorcontroller->RegisterActor(p);
+  actorcontroller->RegisterActor("player", p);
 }
 
 void Engine::Start()
 {
-  std::thread render_thread([this]()
-                            {
-            while (1)
-            {
-                std::this_thread::sleep_for(std::chrono::duration<double>(TickTime));
-                rendercontroller->Draw();
-            } });
-  render_thread.detach();
-  while (true)
+  rendercontroller->Start(TickTime);
+  actorcontroller->Start(ACTORCONTROLLER_TICKTIME);
+  for (auto i = controllers.begin(); i != controllers.end(); i++)
   {
-    std::vector<render_data> datas = actorcontroller->GetRenderData();
-    rendercontroller->SetFrameData(datas);
-    std::this_thread::sleep_for(std::chrono::duration<double>(TickTime));
-    actorcontroller->TickAtion();
+    (*i).second->Start(TickTime);
   }
+}
+
+void Engine::AddController(std::string name, Controller *c)
+{
+  if (controllers.find(name) == controllers.end())
+  {
+    controllers[name] = c;
+  }
+}
+
+Controller *Engine::GetController(std::string name)
+{
+  if (controllers.find(name) != controllers.end())
+  {
+    return controllers[name];
+  }
+  return nullptr;
 }
