@@ -11,11 +11,15 @@ void InputController::CheckKey()
     bool currentState = (GetAsyncKeyState(i) & 0x8000) != 0;
     if (currentState && !keyStates[i])
     {
-
+     for (auto &func : keyPressedFunctions[i]) {
+        std::thread([func]() { func(); }).detach();
+      }
     }
     else if (!currentState && keyStates[i])
     {
-      
+      for (auto &func : keyReleasedFunctions[i]) {
+        std::thread([func]() { func(); }).detach();
+      }
     }
     keyStates[i] = currentState;
   }

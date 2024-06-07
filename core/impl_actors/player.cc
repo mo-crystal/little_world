@@ -9,6 +9,9 @@ Player::~Player()
 
 void Player::Move()
 {
+
+  std::string now_state = this->GetNowState();
+  
   srand(time(nullptr));
 
   int random_number = rand() % 4;
@@ -32,7 +35,6 @@ void Player::Move()
   }
   this->SetLocation(p);
 }
-
 
 void Player::TickAction()
 {
