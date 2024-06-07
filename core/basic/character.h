@@ -10,7 +10,6 @@ public:
   Character(Point p, double scale = 1) : RenderableActor(p, scale) {}
   virtual ~Character();
   virtual void Move() = 0;
-  void TickAction() override;
 };
 
 #endif

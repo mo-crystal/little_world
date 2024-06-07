@@ -13,7 +13,7 @@ public:
   Player(Point p) : Character(p) {}
   ~Player();
   void Move();
-  void TickAction() override;
+  void TickAction() ;
 };
 
 #endif

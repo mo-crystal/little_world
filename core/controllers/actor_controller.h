@@ -13,7 +13,8 @@ class ActorController:public Controller
 {
 private:
   std::unordered_map<std::string ,Actor *> actors;
-
+  std::mutex mtx;
+  
 public:
   ActorController(Engine * e):Controller(e){}
   ~ActorController();

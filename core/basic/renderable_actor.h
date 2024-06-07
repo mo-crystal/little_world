@@ -25,10 +25,8 @@ public:
   bool StateChange(const std::string &s_name);
   void InitStates(const std::string &path);
   std::string GetNowState() { return now_state; }
-  
-  
-  
-  void TickAction() override;
+  void NextFrame();
+
   render_data GetRenderData();
  
   virtual ~RenderableActor();

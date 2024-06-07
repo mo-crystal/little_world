@@ -38,6 +38,5 @@ void Player::Move()
 
 void Player::TickAction()
 {
-  Character::TickAction();
   Move();
 }

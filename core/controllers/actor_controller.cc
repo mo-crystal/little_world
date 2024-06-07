@@ -1,5 +1,4 @@
 #include "actor_controller.h"
-#include "../engine.h"
 
 ActorController::~ActorController()
 {
@@ -19,6 +18,7 @@ void ActorController::RegisterActor(std::string name, Actor *a)
 
 void ActorController::TickAtion()
 {
+  std::lock_guard<std::mutex> lock(mtx);
   for (auto &i : actors)
   {
     auto character = dynamic_cast<Character *>(i.second);
@@ -31,13 +31,18 @@ void ActorController::TickAtion()
 
 std::vector<render_data> ActorController::GetRenderData()
 {
+  
   std::vector<render_data> res;
-  for (auto i : actors)
   {
-    auto renderableActor = dynamic_cast<RenderableActor *>(i.second);
-    if (renderableActor != nullptr)
+    std::lock_guard<std::mutex> lock(mtx);
+    for (auto i : actors)
     {
-      res.push_back(renderableActor->GetRenderData());
+      auto renderableActor = dynamic_cast<RenderableActor *>(i.second);
+      if (renderableActor != nullptr)
+      {
+        res.push_back(renderableActor->GetRenderData());
+        renderableActor->NextFrame();
+      }
     }
   }
   std::sort(res.begin(), res.end(), [](const render_data &a, const render_data &b)
@@ -54,10 +59,6 @@ void ActorController::Start(double interval)
             {
               std::this_thread::sleep_for(std::chrono::duration<double>(interval));
               this->TickAtion();
-              RenderController* rd_ctrl = dynamic_cast<RenderController*>(this->GetEngine()->GetController("rendercontroller"));
-              if (rd_ctrl) {
-                rd_ctrl->SetFrameData(this->GetRenderData());  
-              } 
             } });
   render_thread.detach();
   this->SetStarted();

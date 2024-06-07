@@ -134,7 +134,7 @@ void RenderableActor::InitStates(const std::string &path) {
   default_state = (*States.begin()).first;
 }*/
 
-void RenderableActor::TickAction()
+void RenderableActor::NextFrame()
 {
   nowframe++;
   if (nowframe >= States[now_state].size())
