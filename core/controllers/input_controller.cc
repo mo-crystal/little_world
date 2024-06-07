@@ -27,6 +27,7 @@ void InputController::CheckKey()
 
 void InputController::Start(double interval)
 {
+  std::cout <<"started"<<std::endl;
   std::thread render_thread([&]()
                             {
             while (true)
@@ -35,4 +36,5 @@ void InputController::Start(double interval)
                 this->CheckKey();
             } });
   render_thread.detach();
+  this->SetStarted();
 }

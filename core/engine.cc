@@ -35,7 +35,13 @@ void Engine::Start()
   inputcontroller->Start(INPUTCONTROLLER_TICKTIME);
   for (auto i = controllers.begin(); i != controllers.end(); i++)
   {
-    (*i).second->Start(TickTime);
+    if (!(*i).second->GetStarted())
+    {
+      (*i).second->Start(TickTime);
+    }
+  }
+  while (true) {
+    std::this_thread::sleep_for(std::chrono::seconds(1));
   }
 }
 

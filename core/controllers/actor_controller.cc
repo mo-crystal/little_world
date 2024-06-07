@@ -1,4 +1,5 @@
 #include "actor_controller.h"
+#include "../engine.h"
 
 ActorController::~ActorController()
 {
@@ -46,14 +47,20 @@ std::vector<render_data> ActorController::GetRenderData()
 
 void ActorController::Start(double interval)
 {
+  std::cout << "started" << std::endl;
   std::thread render_thread([&]()
                             {
             while (true)
             {
-                std::this_thread::sleep_for(std::chrono::duration<double>(interval));
-                this->TickAtion();
+              std::this_thread::sleep_for(std::chrono::duration<double>(interval));
+              this->TickAtion();
+              RenderController* rd_ctrl = dynamic_cast<RenderController*>(this->GetEngine()->GetController("rendercontroller"));
+              if (rd_ctrl) {
+                rd_ctrl->SetFrameData(this->GetRenderData());  
+              } 
             } });
   render_thread.detach();
+  this->SetStarted();
 }
 
 void ActorController::UpdateActorByName(std::string name, std::string state)
