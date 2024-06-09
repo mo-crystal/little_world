@@ -9,25 +9,20 @@ Player::~Player()
 
 void Player::Move()
 {
-
   std::string now_state = this->GetNowState();
-  
-  srand(time(nullptr));
-
-  int random_number = rand() % 4;
   Point p;
-  switch (random_number)
+  switch (this->GetTowards())
   {
-  case 0:
+  case EAST:
     p = this->GetLocation() + Point(speed, 0);
     break;
-  case 1:
+  case NORTH:
     p = this->GetLocation() + Point(0, speed);
     break;
-  case 2:
+  case WEST:
     p = this->GetLocation() + Point(-speed, 0);
     break;
-  case 3:
+  case SOUTH:
     p = this->GetLocation() + Point(0, -speed);
     break;
   default:
@@ -39,4 +34,21 @@ void Player::Move()
 void Player::TickAction()
 {
   Move();
+}
+
+void Player::SetSpeed(double _speed)
+{
+  if (speed == _speed)
+  {
+    return;
+  }
+  speed = _speed;
+  if (speed == 0)
+  {
+    this->StateChange("idle");
+  }
+  else
+  {
+    this->StateChange("walk");
+  }
 }
