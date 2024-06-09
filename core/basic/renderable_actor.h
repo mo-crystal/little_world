@@ -26,6 +26,7 @@ public:
   void InitStates(const std::string &path);
   std::string GetNowState() { return now_state; }
   void NextFrame();
+  void AddState(std::string name,std::string path);
 
   render_data GetRenderData();
  
